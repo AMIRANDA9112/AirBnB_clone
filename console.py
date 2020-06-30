@@ -16,11 +16,13 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_EOF(self, line):
-        """CTRL^D"""
+        """Ctrl^C command to exit the program
+        """
         return True
 
     def do_quit(self, line):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         return True
 
 
