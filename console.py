@@ -15,12 +15,6 @@ class HBNBCommand(cmd.Cmd):
     ruler = '='
 
 
-
-    def do_prompt(self, line):
-
-        """None"""
-        HBNBCommand.prompt = line
-
     def do_EOF(self, line):
         """CTRL^D"""
         return True
