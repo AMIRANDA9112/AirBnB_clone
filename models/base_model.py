@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Write a class Base Model for project nBnB
@@ -7,11 +7,12 @@ Write a class Base Model for project nBnB
 import uuid
 from datetime import datetime
 
+
 class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """constructor the class BaseModel"""
-        
+
         if kwargs or kwargs != {}:
             for key in kwargs:
                 self.__dict__[key] = kwargs[key]
@@ -23,11 +24,11 @@ class BaseModel():
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-    
+
     def save(self):
         """save the instance"""
         self.updated_at = datetime.now()
-    
+
     def to_dict(self):
         """"get atributes to dict"""
         format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -45,7 +46,3 @@ class BaseModel():
         """print dir the instance"""
         return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
-
-        #angel.co/jobs
-        #remoteok.io
-        #weworkremotely.com
