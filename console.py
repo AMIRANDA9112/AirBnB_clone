@@ -9,19 +9,24 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
-    intro = "Simple command processor example."
 
-    doc_header = 'doc_header'
-    misc_header = 'misc_header'
-    undoc_header = 'undoc_header'
+    doc_header = 'Documented commands (type help <topic>):'
 
-    ruler = '-'
+    ruler = '='
+
+
 
     def do_prompt(self, line):
-        "Change the interactive prompt"
-        self.prompt = line
+
+        """None"""
+        HBNBCommand.prompt = line
 
     def do_EOF(self, line):
+        """CTRL^D"""
+        return True
+
+    def do_quit(self, line):
+        """Type "quit" to Quit"""
         return True
 
 
