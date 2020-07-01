@@ -29,3 +29,15 @@ class TestFile_Storage(unittest.TestCase):
         self.assertIsNotNone(obj, msj)  # Modules
         msj = "Classes doesnt have docstring"
         self.assertIsNotNone(obj, msj)  # Classes
+    
+    def test_4(self):
+        '''test if file has permissions u+x to execute'''
+        # Check for read access
+        is_read_true = os.access('models/engine/file_storage.py', os.R_OK)
+        self.assertTrue(is_read_true)
+        # Check for write access
+        is_write_true = os.access('models/engine/file_storage.py', os.W_OK)
+        self.assertTrue(is_write_true)
+        # Check for execution access
+        is_exec_true = os.access('models/engine/file_storage.py', os.X_OK)
+        self.assertTrue(is_exec_true)
