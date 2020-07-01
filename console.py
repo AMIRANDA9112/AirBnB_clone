@@ -19,8 +19,9 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb)'
 
-    ___classObj = ["BaseModel", "User", "State", "Amenity",
-     "Place", "Review", "City"]
+    ___classObj = [
+        "BaseModel", "User", "State", "Amenity",
+        "Place", "Review", "City"]
 
     def do_create(self, arg):
         """create instance """
@@ -146,7 +147,11 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, arg):
-        print("Error: comando inexistente")
+        token = arg.split('.')
+        if token[0] in HBNBCommand.___classObj and token[1] == "all()":
+            self.do_all(token[0])
+        else:
+            print("Error: comando inexistente")
 
 
 if __name__ == '__main__':
