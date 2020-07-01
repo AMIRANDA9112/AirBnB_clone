@@ -11,11 +11,6 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """interpreter the comands"""
 
-    intro = """
---------------------
-Welcome to the nbnb
---------------------
-        """
     prompt = '(hbnb)'
 
     ___classObj = ["BaseModel"]
@@ -96,6 +91,7 @@ Welcome to the nbnb
             print(list_objt)
 
     def do_update(self, arg):
+        """update data instance"""
         if len(arg) == 0:
             print("** class name missing **")
         else:
@@ -135,7 +131,6 @@ Welcome to the nbnb
 
     def do_quit(self, arg):
         """Salir del interprete"""
-        print("Good Bye")
         return(True)
 
     def emptyline(self):
