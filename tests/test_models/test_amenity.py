@@ -26,7 +26,7 @@ class TestBase_Model(unittest.TestCase):
         is_write_true = os.access('models/amenity.py', os.W_OK)
         self.assertTrue(is_write_true)
         # Check for execution access
-        is_exec_true = os.access('models/amenity', os.X_OK)
+        is_exec_true = os.access('models/amenity.py', os.X_OK)
         self.assertTrue(is_exec_true)
 
     def test_is_an_instance(self):
