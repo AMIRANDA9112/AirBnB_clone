@@ -10,6 +10,7 @@ import models
 
 
 class BaseModel():
+    """class Base Model"""
 
     def __init__(self, *args, **kwargs):
         """constructor the class BaseModel"""
