@@ -19,8 +19,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb)'
 
-    ___classObj = ["BaseModel", "User", "state", "amenity",
-     "place", "review", "city"]
+    ___classObj = ["BaseModel", "User", "State", "Amenity",
+     "Place", "Review", "City"]
 
     def do_create(self, arg):
         """create instance """
