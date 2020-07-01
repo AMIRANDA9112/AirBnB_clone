@@ -1,5 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """ create class state"""
+
 from models.base_model import BaseModel
 
 

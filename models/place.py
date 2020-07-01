@@ -1,5 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """ create class place"""
+
 from models.base_model import BaseModel
 
 
