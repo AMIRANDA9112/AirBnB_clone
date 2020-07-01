@@ -134,6 +134,24 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
 
+    def do_count(self, arg):
+        """count the instance the class"""
+        if arg == "":
+            print("** class name missing **")
+        else:
+            token = arg.split(' ')
+            if token[0] not in HBNBCommand.___classObj:
+                print("** class doesn't exist **")
+            else:
+                count = 0
+                all_objt = storage.all()
+
+                for id, value in all_objt.items():
+                    key = id.split('.')
+                    if token[0] == key[0]:
+                        count += 1
+                return count
+
     def do_EOF(self, arg):
         """End of file function """
         return True
@@ -150,6 +168,8 @@ class HBNBCommand(cmd.Cmd):
         token = arg.split('.')
         if token[0] in HBNBCommand.___classObj and token[1] == "all()":
             self.do_all(token[0])
+        elif token[0] in HBNBCommand.___classObj and token[1] == "count()":
+            print(self.do_count(token[0]))
         else:
             print("Error: comando inexistente")
 
