@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Write a class Console for nBnB
 """
@@ -6,6 +6,7 @@ Write a class Console for nBnB
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb)'
 
-    ___classObj = ["BaseModel"]
+    ___classObj = ["BaseModel", "User"]
 
     def do_create(self, arg):
         """create instance """
@@ -23,7 +24,8 @@ class HBNBCommand(cmd.Cmd):
             if arg not in HBNBCommand.___classObj:
                 print("** class doesn't exist **")
             else:
-                my_model = BaseModel()
+                obj = arg + '()'
+                my_model = eval(obj)
                 my_model.save()
                 print(my_model.id)
 
