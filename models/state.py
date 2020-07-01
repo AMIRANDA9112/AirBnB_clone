@@ -3,7 +3,7 @@
 from models.base_model import BaseModel
 
 
-class state(BaseModel):
+class State(BaseModel):
     """class state """
     name = ""
 
