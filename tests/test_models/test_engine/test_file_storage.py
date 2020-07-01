@@ -18,6 +18,14 @@ class TestFile_Storage(unittest.TestCase):
         self.assertEqual(dict, type(new_object))
 
     def test_2(self):
-        '''check if my_model is an instance of BaseModel'''
+        """check if my_model is an instance of BaseModel"""
         my_model = FileStorage()
         self.assertIsInstance(my_model, FileStorage)
+    
+    def test_3(self):
+        """test docstring"""
+        msj = "Module doesnt have docstring"
+        obj = models.engine.file_storage.__doc__
+        self.assertIsNotNone(obj, msj)  # Modules
+        msj = "Classes doesnt have docstring"
+        self.assertIsNotNone(obj, msj)  # Classes
