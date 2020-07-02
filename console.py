@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Write a class Console for nBnB
 """
@@ -198,6 +198,21 @@ class HBNBCommand(cmd.Cmd):
             line = token[0] + '.' + token[1][7:]
             key = self.parse(line)
             self.do_destroy(key)
+        elif token[0] in self.___classObj and token[1][0:6] == "update":
+            line = (token[1][8:]).replace(')', '')
+            parse = line.split(',')
+            token2 = []
+            final = 0
+            for i in parse:
+                final += 1
+                if final == 3:
+                    token2.append(i)
+                else:
+                    token2.append(i.replace('"', ''))
+            newLine = token[0] + ' ' + (''.join(token2))
+            print(newLine)
+            self.do_update(newLine)
+
         else:
             print("Error: comando inexistente")
 
