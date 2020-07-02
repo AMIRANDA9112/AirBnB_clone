@@ -152,6 +152,25 @@ class HBNBCommand(cmd.Cmd):
                         count += 1
                 return count
 
+    def parse(self, arg):
+        """parse de args """
+        token = arg.split('.')
+        opn = False
+        close = False
+        id = ""
+        for i in token[1]:
+            if i == '(':
+                opn = True
+            elif i == ')':
+                close = True
+
+            if not(i == '"' or i == ')' or i == '('):
+                id = id + i
+
+        if opn and close:
+            key = "{} {}".format(token[0], id)
+            return key
+
     def do_EOF(self, arg):
         """End of file function """
         return True
@@ -165,11 +184,20 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, arg):
+        """default result"""
         token = arg.split('.')
         if token[0] in HBNBCommand.___classObj and token[1] == "all()":
             self.do_all(token[0])
         elif token[0] in HBNBCommand.___classObj and token[1] == "count()":
             print(self.do_count(token[0]))
+        elif token[0] in HBNBCommand.___classObj and token[1][0:4] == "show":
+            line = token[0] + '.' + token[1][4:]
+            key = self.parse(line)
+            self.do_show(key)
+        elif token[0] in self.___classObj and token[1][0:7] == "destroy":
+            line = token[0] + '.' + token[1][7:]
+            key = self.parse(line)
+            self.do_destroy(key)
         else:
             print("Error: comando inexistente")
 
