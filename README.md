@@ -25,8 +25,8 @@ In this project we develop the first step, Write a command interpreter to manage
 Use the  [git clone](https://github.com/moncada92/AirBnB_clone.git) to install this repository
 ```
 git clone https://github.com/moncada92/AirBnB_clone.git
-
-## Usage:
+```
+## Usage :
 In the file descriptor you will find the definitions of opcode.
 * Your console should work like this in interactive mode:
 ```
