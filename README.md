@@ -17,7 +17,7 @@ In this project we develop the first step, Write a command interpreter to manage
 ### The console
 * create your data model
 * manage (create, update, destroy, etc) objects via a console / command interpreter
-* store and persist objects to a file (JSON file)ç
+* store and persist objects to a file (JSON file)
 
 # Requirements
 
