@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit test for the file storage
+"""Unit test for console
 """
 import unittest
 from io import StringIO

@@ -1,68 +1,50 @@
 #!/usr/bin/python3
-'''Tests BaseModel class'''
+"""Unit test for base model
+"""
 import os
 import unittest
-import models
+from io import StringIO
+from unittest.mock import patch
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+import models
+CurrentClass = models.base_model.BaseModel
 
+class TestBaseClass(unittest.TestCase):
+    """Tests for BasModel"""
 
-class TestBase_Model(unittest.TestCase):
-    '''Tests for BasModel'''
+    def testSave(self):
+        """ file saving """
+        with open("test.json", 'w'):
+            FileStorage._FileStorage__file_path = "test.json"
+            FileStorage._FileStorage__objects = {}
 
-    def test_docstring(self):
-        '''test if funcions, methods, classes
-        and modules have docstring'''
-        msj = "Módulo does not has docstring"
-        self.assertIsNotNone(models.base_model.__doc__, msj)  # Modules
-        msj = "Clase does not has docstring"
-        self.assertIsNotNone(BaseModel.__doc__, msj)  # Classes
-
-    def test_executable_file(self):
-        '''test if file has permissions u+x to execute'''
-        # Check for read access
-        is_read_true = os.access('models/base_model.py', os.R_OK)
-        self.assertTrue(is_read_true)
-        # Check for write access
-        is_write_true = os.access('models/base_model.py', os.W_OK)
-        self.assertTrue(is_write_true)
-        # Check for execution access
-        is_exec_true = os.access('models/base_model.py', os.X_OK)
-        self.assertTrue(is_exec_true)
-
-    def test_is_an_instance(self):
-        '''check if my_model is an instance of BaseModel'''
-        my_model = BaseModel()
-        self.assertIsInstance(my_model, BaseModel)
+    def test_isinstance(self):
+        """ Check if is instance """
+        obj = BaseModel()
+        self.assertIsInstance(obj, BaseModel)
 
     def test_id(self):
-        '''test if the id of two instances are different'''
-        my_model = BaseModel()
-        my_model1 = BaseModel()
-        self.assertNotEqual(my_model.id, my_model1.id)
+        """  id type """
+        my_third = BaseModel()
+        self.assertTrue(type(my_third.id) == str)
 
-    def test_save(self):
-        '''check if the attribute updated_at (date) is updated for
-        the same object with the current date'''
-        my_model2 = BaseModel()
-        first_updated = my_model2.updated_at
-        my_model2.save()
-        second_updated = my_model2.updated_at
-        self.assertNotEqual(first_updated, second_updated)
+    def test_remove(self):
+        """Executes when test finish"""
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
 
     def test_to_dict(self):
-        '''check if to_dict returns a dictionary, if add a class
-        key with class name of the object and if updated_at and
-        created_at are converted to string object in ISO format.'''
-        my_model3 = BaseModel()
-        my_dict_model3 = my_model3.to_dict()
-        self.assertIsInstance(my_dict_model3, dict)
-        for key, value in my_dict_model3.items():
-            flag = 0
-            if my_dict_model3['__class__'] == 'BaseModel':
-                flag += 1
-            self.assertTrue(flag == 1)
-        for key, value in my_dict_model3.items():
-            if key == 'created_at':
-                self.assertIsInstance(value, str)
-            if key == 'updated_at':
-                self.assertIsInstance(value, str)
+        """Test to_dict function"""
+        cti1 = CurrentClass()
+        cti1_dict = cti1.to_dict()
+        self.assertEqual(type(cti1_dict), dict)
+        self.assertIn('updated_at', cti1_dict)
+        self.assertIn('created_at', cti1_dict)
+        self.assertIn('__class__', cti1_dict)
+        self.assertNotEqual(cti1_dict, cti1.__dict__)
+
+if __name__ == '__main__':
+    unittest.main()
