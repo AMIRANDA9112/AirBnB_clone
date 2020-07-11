@@ -7,6 +7,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 import os
 
+
 class TestAmenityClass(unittest.TestCase):
     """Tests Amenity class"""
 
