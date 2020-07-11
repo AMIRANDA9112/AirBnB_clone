@@ -1,68 +1,41 @@
 #!/usr/bin/python3
-"""Tests BaseModel class"""
-import os
+"""Unit test for the file storage class
+"""
+
 import unittest
-import models
 from models.user import User
+from models.base_model import BaseModel
+import os
 
 
-class TestBase_Model(unittest.TestCase):
-    """Tests for class User"""
+class TestUserClass(unittest.TestCase):
+    """Tests for User"""
 
-    def test_docstring(self):
-        '''test if funcions, methods, classes
-        and modules have docstring'''
-        msj = "Módulo does not has docstring"
-        self.assertIsNotNone(models.user.__doc__, msj)  # Modules
-        msj = "Clase does not has docstring"
-        self.assertIsNotNone(User.__doc__, msj)  # Classes
+    def setUp(self):
+        """init for each test"""
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
 
-    def test_executable_file(self):
-        '''test if file has permissions u+x to execute'''
-        # Check for read access
-        is_read_true = os.access('models/user.py', os.R_OK)
-        self.assertTrue(is_read_true)
-        # Check for write access
-        is_write_true = os.access('models/user.py', os.W_OK)
-        self.assertTrue(is_write_true)
-        # Check for execution access
-        is_exec_true = os.access('models/user.py', os.X_OK)
-        self.assertTrue(is_exec_true)
+    def test_docs(self):
+        """ check documentation """
+        for func in dir(User):
+            self.assertTrue(len(func.__doc__) > 0)
 
-    def test_is_an_instance(self):
-        '''check if my_model is an instance of User'''
-        my_model = User()
-        self.assertIsInstance(my_model, User)
+    def test_is_instance(self):
+        """ Test inheritance of BaseModel """
+        my_user = User()
+        self.assertTrue(isinstance(my_user, BaseModel))
 
-    def test_id(self):
-        '''test if the id of two instances are different'''
-        my_model = User()
-        my_model1 = User()
-        self.assertNotEqual(my_model.id, my_model1.id)
+    def test_field_types(self):
+        """ Test type of attributes """
+        my_user = User()
+        self.assertTrue(type(my_user.email) == str)
+        self.assertTrue(type(my_user.password) == str)
+        self.assertTrue(type(my_user.first_name) == str)
+        self.assertTrue(type(my_user.last_name) == str)
 
-    def test_save(self):
-        '''check if the attribute updated_at (date) is updated for
-        the same object with the current date'''
-        my_model2 = User()
-        first_updated = my_model2.updated_at
-        my_model2.save()
-        second_updated = my_model2.updated_at
-        self.assertNotEqual(first_updated, second_updated)
 
-    def test_to_dict(self):
-        '''check if to_dict returns a dictionary, if add a class
-        key with class name of the object and if updated_at and
-        created_at are converted to string object in ISO format.'''
-        my_model3 = User()
-        my_dict_model3 = my_model3.to_dict()
-        self.assertIsInstance(my_dict_model3, dict)
-        for key, value in my_dict_model3.items():
-            flag = 0
-            if my_dict_model3['__class__'] == 'User':
-                flag += 1
-            self.assertTrue(flag == 1)
-        for key, value in my_dict_model3.items():
-            if key == 'created_at':
-                self.assertIsInstance(value, str)
-            if key == 'updated_at':
-                self.assertIsInstance(value, str)
+if __name__ == '__main__':
+    unittest.main()

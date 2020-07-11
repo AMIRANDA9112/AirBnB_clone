@@ -3,21 +3,19 @@
 """
 import os
 import unittest
-from io import StringIO
-from unittest.mock import patch
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 import models
 CurrentClass = models.base_model.BaseModel
 
 class TestBaseClass(unittest.TestCase):
     """Tests for BasModel"""
 
-    def testSave(self):
-        """ file saving """
-        with open("test.json", 'w'):
-            FileStorage._FileStorage__file_path = "test.json"
-            FileStorage._FileStorage__objects = {}
+    def setUp(self):
+        """init each tests"""
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
 
     def test_isinstance(self):
         """ Check if is instance """
@@ -29,12 +27,6 @@ class TestBaseClass(unittest.TestCase):
         my_third = BaseModel()
         self.assertTrue(type(my_third.id) == str)
 
-    def test_remove(self):
-        """Executes when test finish"""
-        try:
-            os.remove("file.json")
-        except IOError:
-            pass
 
     def test_to_dict(self):
         """Test to_dict function"""
