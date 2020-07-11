@@ -3,16 +3,13 @@
 """
 import unittest
 
-from models.engine import file_storage
 from models.engine.file_storage import FileStorage
-from models.base_model import BaseModel
 import os
 from models import storage
 
 
 class TestFileStorageClass(unittest.TestCase):
     """"tests Storage"""
-
 
     def setUp(self):
         """init for each test"""
