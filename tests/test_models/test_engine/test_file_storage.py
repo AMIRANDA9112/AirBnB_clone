@@ -1,43 +1,41 @@
 #!/usr/bin/python3
-'''Tests FileStorage class'''
-import os
+"""Unit test for storage class
+"""
 import unittest
-import models
-from models.base_model import BaseModel
+
+from models.engine import file_storage
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+import os
+from models import storage
 
 
-class TestFile_Storage(unittest.TestCase):
-    '''tests Storage'''
+class TestFileStorageClass(unittest.TestCase):
+    """"tests Storage"""
 
-    def test_1(self):
-        """  Test Dictionary """
-        model = BaseModel()
-        model.save()
-        new_object = models.storage.all()
-        self.assertEqual(dict, type(new_object))
 
-    def test_2(self):
-        """check if my_model is an instance of BaseModel"""
-        my_model = FileStorage()
-        self.assertIsInstance(my_model, FileStorage)
-    
-    def test_3(self):
-        """test docstring"""
-        msj = "Module doesnt have docstring"
-        obj = models.engine.file_storage.__doc__
-        self.assertIsNotNone(obj, msj)  # Modules
-        msj = "Classes doesnt have docstring"
-        self.assertIsNotNone(obj, msj)  # Classes
-    
-    def test_4(self):
-        '''test if file has permissions u+x to execute'''
-        # Check for read access
-        is_read_true = os.access('models/engine/file_storage.py', os.R_OK)
-        self.assertTrue(is_read_true)
-        # Check for write access
-        is_write_true = os.access('models/engine/file_storage.py', os.W_OK)
-        self.assertTrue(is_write_true)
-        # Check for execution access
-        is_exec_true = os.access('models/engine/file_storage.py', os.X_OK)
-        self.assertTrue(is_exec_true)
+    def setUp(self):
+        """init for each test"""
+        FileStorage._FileStorage__objects = {}
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+
+    def test_instance(self):
+        """ Check inheritance """
+        self.assertIsInstance(storage, FileStorage)
+
+    def test_doc(self):
+        """ tests for documentation """
+        self.assertTrue(len(FileStorage.__doc__) > 0)
+
+    def test_dict(self):
+        """ Test """
+        my_obj = FileStorage()
+        my_dict = my_obj.all()
+        self.assertTrue(type(my_dict) == dict)
+
+
+if __name__ == '__main__':
+    unittest.main()
