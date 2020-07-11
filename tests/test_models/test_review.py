@@ -30,7 +30,7 @@ class TestBase_Model(unittest.TestCase):
         self.assertTrue(is_exec_true)
 
     def test_is_an_instance(self):
-        '''check if my_model is an instance of User'''
+        '''check if my_model is an instance of Review'''
         my_model = Review()
         self.assertIsInstance(my_model, Review)
 

@@ -1,7 +1,7 @@
 # AirBnB_clone - console
 ## Description
 
-this is a project inspired by the AirBnB application and aims to carry out a complete web project which is divided into 4 steps:
+This is a project inspired by the AirBnB application and aims to carry out a complete web project which is divided into 4 steps:
 
 * A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging).
 
