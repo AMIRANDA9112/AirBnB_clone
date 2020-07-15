@@ -39,7 +39,7 @@
 	border-radius: 50%;
 	align-items: center;
 }
-
+/*border and position of articles*/
 .square {
 	display: flex;
 	align-items: center;
@@ -47,6 +47,43 @@
 	padding-bottom: 10px;
 	justify-content: space-between;
 }
+/*title of articles*/
 .square h2 {
 	align-items: center;
+}
+/*information*/
+.information {
+	height: 80px;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	display: flex;
+		align-items: center;
+	justify-content: center;
+}
+/*information position*/
+.information div {
+	display: flex;
+	align-items: center;
+	height: 65px;
+	justify-content: flex-end;
+	flex-direction: column;
+}
+/*icon group*/
+.information .max_guest {
+	background: url("../images/icon_group.png") no-repeat top center;
+	width: 100px;
+}
+/*icon bedroom*/
+.information .number_rooms {
+	background: url("../images/icon_bed.png") no-repeat top center;
+	width: 100px;
+}
+/*icon bathroom*/
+.information .number_bathrooms {
+	background: url("../images/icon_bath.png") no-repeat top center;
+	width: 100px;
+}
+.user {
+	margin-top: 15px;
+	margin-bottom: 5px;
 }
