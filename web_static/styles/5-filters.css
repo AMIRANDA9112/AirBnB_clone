@@ -48,6 +48,6 @@ button:hover {
 
 	font-size: 14px;
 }
-.filters div:first-of-type{
-	border: 1px solid #DDDDDD;
+.filters div:last-of-type{
+	border-left: 1px solid #DDDDDD;
 }
